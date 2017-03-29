@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CadeMeuMedico.Models.Medico>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@BannersPublicitarios.RetornaDoisBannersMaisRecentes();
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Adicionar novo médico", "Adicionar",null,new {@class="btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        <th>
+            @Html.DisplayNameFor(model => model.Cidades)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Especialidades)
+        </th>
+        <th>Modificar</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidades.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidades.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.IDMedico }) |
+            @Html.ActionLink("Remover", "Excluir", new { id=item.IDMedico})
+        </td>
+    </tr>
+}
+
+</table>
